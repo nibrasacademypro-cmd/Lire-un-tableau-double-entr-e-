@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lire un tableau à double entrée - SVT 3AC</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f5e9, #e3f2fd);
+    margin: 0;
+    padding: 20px;
+    color: #263238;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+}
+
+h1 {
+    text-align: center;
+    color: #1565c0;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #388e3c;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.step {
+    padding: 18px;
+    margin: 15px 0;
+    border-radius: 15px;
+    background: #f5f9fc;
+    border-left: 7px solid #1565c0;
+}
+
+.step h2 {
+    margin-top: 0;
+    color: #1565c0;
+}
+
+.question {
+    background: #fff8e1;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
+
+button {
+    background: #1565c0;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #0d47a1;
+}
+
+.feedback {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 2px solid #90a4ae;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background: #bbdefb;
+}
+
+tr:nth-child(even) {
+    background: #f5f5f5;
+}
+
+input {
+    padding: 10px;
+    border: 2px solid #90a4ae;
+    border-radius: 8px;
+    width: 120px;
+}
+
+.final {
+    text-align: center;
+    background: #e8f5e9;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 25px;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2e7d32;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📊 Lire un tableau à double entrée</h1>
+<div class="subtitle">SVT – 3AC | Avec Prof Hanane</div>
+
+<div class="step">
+
+<h2>1️⃣ Identifier le titre du tableau</h2>
+
+<p>
+Je commence par lire attentivement le <strong>titre du tableau</strong>.
+</p>
+
+<div class="question">
+<strong>Question :</strong> Que permet de connaître le titre du tableau ?
+<br><br>
+
+<button onclick="answer(1, true)">
+Comprendre de quoi parle le tableau
+</button>
+
+<button onclick="answer(1, false)">
+Lire directement toutes les valeurs
+</button>
+
+<div id="feedback1" class="feedback"></div>
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h2>2️⃣ Identifier les titres des lignes et des colonnes</h2>
+
+<p>
+Je repère ce que représentent les <strong>lignes</strong> et les
+<strong>colonnes</strong>.
+</p>
+
+<table>
+
+<tr>
+<th>Aliment</th>
+<th>Glucides (g)</th>
+<th>Protéines (g)</th>
+</tr>
+
+<tr>
+<td>Pain</td>
+<td>50</td>
+<td>8</td>
+</tr>
+
+<tr>
+<td>Lait</td>
+<td>5</td>
+<td>3</td>
+</tr>
+
+</table>
+
+<div class="question">
+
+<strong>Question :</strong> Que représentent les colonnes ?
+
+<br><br>
+
+<button onclick="answer(2, true)">
+Les nutriments étudiés
+</button>
+
+<button onclick="answer(2, false)">
+Les aliments uniquement
+</button>
+
+<div id="feedback2" class="feedback"></div>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h2>3️⃣ Extraire les données</h2>
+
+<p>
+Je recherche la donnée correspondant à la <strong>ligne</strong> et à la
+<strong>colonne</strong> demandées.
+</p>
+
+<div class="question">
+
+<strong>Question :</strong>
+
+Combien de grammes de glucides contient le pain ?
+
+<br><br>
+
+<input type="number" id="dataAnswer">
+
+<button onclick="checkData()">Vérifier</button>
+
+<div id="feedback3" class="feedback"></div>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h2>4️⃣ Mettre en relation les données</h2>
+
+<p>
+Je compare les informations afin de dégager une
+<strong>relation ou une conclusion scientifique</strong>.
+</p>
+
+<div class="question">
+
+<strong>Question :</strong>
+
+Quel aliment contient le plus de glucides ?
+
+<br><br>
+
+<button onclick="answer(4, true)">
+Le pain
+</button>
+
+<button onclick="answer(4, false)">
+Le lait
+</button>
+
+<div id="feedback4" class="feedback"></div>
+
+</div>
+
+</div>
+
+
+<div class="final">
+
+<h2>🧠 À retenir</h2>
+
+<p>
+<strong>
+TITRE → LIGNES & COLONNES → DONNÉES → RELATIONS
+</strong>
+</p>
+
+<p>
+🔎 Je lis → 📋 Je repère → 📊 J'extrais → 🧠 Je mets en relation
+</p>
+
+<div id="score">Score : 0 / 4</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let score = 0;
+let answered = {};
+
+function answer(question, correct) {
+
+    if (answered[question]) return;
+
+    answered[question] = true;
+
+    let feedback = document.getElementById("feedback" + question);
+
+    if (correct) {
+
+        feedback.innerHTML = "✅ Bonne réponse !";
+        feedback.style.color = "#2e7d32";
+        score++;
+
+    } else {
+
+        feedback.innerHTML = "❌ Essaie encore !";
+        feedback.style.color = "#c62828";
+
+        answered[question] = false;
+        return;
+    }
+
+    updateScore();
+}
+
+
+function checkData() {
+
+    if (answered[3]) return;
+
+    let value = document.getElementById("dataAnswer").value;
+    let feedback = document.getElementById("feedback3");
+
+    if (value == 50) {
+
+        feedback.innerHTML = "✅ Excellent ! Le pain contient 50 g de glucides.";
+        feedback.style.color = "#2e7d32";
+
+        answered[3] = true;
+        score++;
+
+        updateScore();
+
+    } else {
+
+        feedback.innerHTML = "❌ Regarde la ligne « Pain » et la colonne « Gl
