@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Lire un tableau à double entrée - SVT 3AC</title>
 
 <style>
@@ -64,11 +65,16 @@ button {
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 10px;
+    margin: 6px 5px 0 0;
 }
 
 button:hover {
     background: #0d47a1;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .feedback {
@@ -101,6 +107,7 @@ input {
     border: 2px solid #90a4ae;
     border-radius: 8px;
     width: 120px;
+    font-size: 16px;
 }
 
 .final {
@@ -112,9 +119,53 @@ input {
 }
 
 #score {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     color: #2e7d32;
+    margin: 15px 0;
+}
+
+#resultat {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background: white;
+    border: 3px solid #1565c0;
+}
+
+#resultat h2 {
+    color: #1565c0;
+}
+
+#noteFinale {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+#messageFinal {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.result-button {
+    background: #2e7d32;
+    font-size: 18px;
+    padding: 15px 25px;
+    margin-top: 15px;
+}
+
+.result-button:hover {
+    background: #1b5e20;
+}
+
+.reset-button {
+    background: #757575;
+}
+
+.reset-button:hover {
+    background: #424242;
 }
 </style>
 </head>
@@ -124,41 +175,53 @@ input {
 <div class="container">
 
 <h1>📊 Lire un tableau à double entrée</h1>
-<div class="subtitle">SVT – 3AC | Avec Prof Hanane</div>
+
+<div class="subtitle">
+SVT – 3AC | Avec Prof Hanane
+</div>
+
+
+<!-- ÉTAPE 1 -->
 
 <div class="step">
 
 <h2>1️⃣ Identifier le titre du tableau</h2>
 
 <p>
-Je commence par lire attentivement le <strong>titre du tableau</strong>.
+Je commence par lire attentivement le
+<strong>titre du tableau</strong>.
 </p>
 
 <div class="question">
-<strong>Question :</strong> Que permet de connaître le titre du tableau ?
+
+<strong>Question :</strong>
+Que permet de connaître le titre du tableau ?
+
 <br><br>
 
-<button onclick="answer(1, true)">
+<button onclick="answer(1, true, this)">
 Comprendre de quoi parle le tableau
 </button>
 
-<button onclick="answer(1, false)">
+<button onclick="answer(1, false, this)">
 Lire directement toutes les valeurs
 </button>
 
 <div id="feedback1" class="feedback"></div>
-</div>
 
 </div>
+</div>
 
+
+<!-- ÉTAPE 2 -->
 
 <div class="step">
 
 <h2>2️⃣ Identifier les titres des lignes et des colonnes</h2>
 
 <p>
-Je repère ce que représentent les <strong>lignes</strong> et les
-<strong>colonnes</strong>.
+Je repère ce que représentent les
+<strong>lignes</strong> et les <strong>colonnes</strong>.
 </p>
 
 <table>
@@ -185,52 +248,63 @@ Je repère ce que représentent les <strong>lignes</strong> et les
 
 <div class="question">
 
-<strong>Question :</strong> Que représentent les colonnes ?
+<strong>Question :</strong>
+Que représentent les colonnes ?
 
 <br><br>
 
-<button onclick="answer(2, true)">
+<button onclick="answer(2, true, this)">
 Les nutriments étudiés
 </button>
 
-<button onclick="answer(2, false)">
+<button onclick="answer(2, false, this)">
 Les aliments uniquement
 </button>
 
 <div id="feedback2" class="feedback"></div>
 
 </div>
-
 </div>
 
+
+<!-- ÉTAPE 3 -->
 
 <div class="step">
 
 <h2>3️⃣ Extraire les données</h2>
 
 <p>
-Je recherche la donnée correspondant à la <strong>ligne</strong> et à la
-<strong>colonne</strong> demandées.
+Je recherche la donnée correspondant à la
+<strong>ligne</strong> et à la <strong>colonne</strong> demandées.
 </p>
 
 <div class="question">
 
 <strong>Question :</strong>
 
+<p>
 Combien de grammes de glucides contient le pain ?
+</p>
 
-<br><br>
+<input
+type="number"
+id="dataAnswer"
+placeholder="Réponse"
+>
 
-<input type="number" id="dataAnswer">
+<br>
 
-<button onclick="checkData()">Vérifier</button>
+<button onclick="checkData()">
+Vérifier
+</button>
 
 <div id="feedback3" class="feedback"></div>
 
 </div>
-
 </div>
 
+
+<!-- ÉTAPE 4 -->
 
 <div class="step">
 
@@ -245,24 +319,25 @@ Je compare les informations afin de dégager une
 
 <strong>Question :</strong>
 
+<p>
 Quel aliment contient le plus de glucides ?
+</p>
 
-<br><br>
-
-<button onclick="answer(4, true)">
+<button onclick="answer(4, true, this)">
 Le pain
 </button>
 
-<button onclick="answer(4, false)">
+<button onclick="answer(4, false, this)">
 Le lait
 </button>
 
 <div id="feedback4" class="feedback"></div>
 
 </div>
-
 </div>
 
+
+<!-- FINAL -->
 
 <div class="final">
 
@@ -278,7 +353,36 @@ TITRE → LIGNES & COLONNES → DONNÉES → RELATIONS
 🔎 Je lis → 📋 Je repère → 📊 J'extrais → 🧠 Je mets en relation
 </p>
 
-<div id="score">Score : 0 / 4</div>
+<div id="score">
+Score : 0 / 4
+</div>
+
+<button
+class="result-button"
+onclick="showResult()"
+>
+🎯 Voir le résultat
+</button>
+
+<div id="resultat">
+
+<h2>📊 Résultat de l'activité</h2>
+
+<div id="noteFinale">
+0 / 4
+</div>
+
+<p id="messageFinal">
+</p>
+
+<button
+class="reset-button"
+onclick="restartActivity()"
+>
+🔄 Recommencer l'activité
+</button>
+
+</div>
 
 </div>
 
@@ -288,52 +392,215 @@ TITRE → LIGNES & COLONNES → DONNÉES → RELATIONS
 <script>
 
 let score = 0;
-let answered = {};
 
-function answer(question, correct) {
+let answered = {
+    1: false,
+    2: false,
+    3: false,
+    4: false
+};
 
-    if (answered[question]) return;
 
-    answered[question] = true;
+/* =========================
+   QUESTIONS À CHOIX
+========================= */
 
-    let feedback = document.getElementById("feedback" + question);
+function answer(question, correct, button) {
 
-    if (correct) {
-
-        feedback.innerHTML = "✅ Bonne réponse !";
-        feedback.style.color = "#2e7d32";
-        score++;
-
-    } else {
-
-        feedback.innerHTML = "❌ Essaie encore !";
-        feedback.style.color = "#c62828";
-
-        answered[question] = false;
+    if (answered[question]) {
         return;
     }
 
-    updateScore();
-}
+    const feedback =
+        document.getElementById("feedback" + question);
 
+    if (correct) {
 
-function checkData() {
+        answered[question] = true;
 
-    if (answered[3]) return;
+        score++;
 
-    let value = document.getElementById("dataAnswer").value;
-    let feedback = document.getElementById("feedback3");
+        feedback.innerHTML =
+            "✅ Bonne réponse !";
 
-    if (value == 50) {
-
-        feedback.innerHTML = "✅ Excellent ! Le pain contient 50 g de glucides.";
         feedback.style.color = "#2e7d32";
 
-        answered[3] = true;
-        score++;
+        button.disabled = true;
 
         updateScore();
 
     } else {
 
-        feedback.innerHTML = "❌ Regarde la ligne « Pain » et la colonne « Gl
+        feedback.innerHTML =
+            "❌ Essaie encore !";
+
+        feedback.style.color = "#c62828";
+    }
+}
+
+
+/* =========================
+   QUESTION 3
+========================= */
+
+function checkData() {
+
+    if (answered[3]) {
+        return;
+    }
+
+    const input =
+        document.getElementById("dataAnswer");
+
+    const feedback =
+        document.getElementById("feedback3");
+
+    const value =
+        Number(input.value);
+
+    if (value === 50) {
+
+        answered[3] = true;
+
+        score++;
+
+        feedback.innerHTML =
+            "✅ Excellent ! Le pain contient 50 g de glucides.";
+
+        feedback.style.color = "#2e7d32";
+
+        input.disabled = true;
+
+        updateScore();
+
+    } else {
+
+        feedback.innerHTML =
+            "❌ Regarde la ligne « Pain » et la colonne « Glucides (g) ».";
+
+        feedback.style.color = "#c62828";
+    }
+}
+
+
+/* =========================
+   SCORE
+========================= */
+
+function updateScore() {
+
+    document.getElementById("score").innerHTML =
+        "Score : " + score + " / 4";
+}
+
+
+/* =========================
+   VOIR LE RÉSULTAT
+========================= */
+
+function showResult() {
+
+    const resultat =
+        document.getElementById("resultat");
+
+    const noteFinale =
+        document.getElementById("noteFinale");
+
+    const message =
+        document.getElementById("messageFinal");
+
+    noteFinale.innerHTML =
+        score + " / 4";
+
+
+    if (score === 4) {
+
+        message.innerHTML =
+            "🌟 Excellent ! Tu maîtrises très bien la lecture d'un tableau à double entrée.";
+
+    } else if (score === 3) {
+
+        message.innerHTML =
+            "👏 Très bien ! Il reste seulement un petit point à revoir.";
+
+    } else if (score === 2) {
+
+        message.innerHTML =
+            "👍 Bon début ! Revois les étapes puis recommence l'activité.";
+
+    } else if (score === 1) {
+
+        message.innerHTML =
+            "📚 Continue tes efforts ! Reprends les différentes étapes.";
+
+    } else {
+
+        message.innerHTML =
+            "💪 Courage ! Relis la méthode puis recommence l'activité.";
+    }
+
+
+    resultat.style.display = "block";
+
+    resultat.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+
+/* =========================
+   RECOMMENCER
+========================= */
+
+function restartActivity() {
+
+    score = 0;
+
+    answered = {
+        1: false,
+        2: false,
+        3: false,
+        4: false
+    };
+
+
+    updateScore();
+
+
+    document.getElementById("resultat").style.display =
+        "none";
+
+
+    document.getElementById("feedback1").innerHTML = "";
+
+    document.getElementById("feedback2").innerHTML = "";
+
+    document.getElementById("feedback3").innerHTML = "";
+
+    document.getElementById("feedback4").innerHTML = "";
+
+
+    document.getElementById("dataAnswer").value = "";
+
+    document.getElementById("dataAnswer").disabled = false;
+
+
+    const buttons =
+        document.querySelectorAll(".question button");
+
+    buttons.forEach(function(button) {
+        button.disabled = false;
+    });
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
